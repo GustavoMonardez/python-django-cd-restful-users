@@ -12,6 +12,17 @@
 <body>
     <div class="wrapper">
         <h1>Users 1 info</h1>
+        <p>Full Name: <span>Jimmy Jun</span></p>
+        <p>Email: <span>jj@cd.com</span></p>
+        <p>Created at: <span>June 15th, 2018</span></p>
+        <form action="/users/{{ id }}/edit">
+            {% csrf_token %}
+            <input type="submit" value="Edit" class="btn btn-warning">
+        </form>
+        <form action="/users/{{ id }}/destroy">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
     </div>    
 </body>
 </html>

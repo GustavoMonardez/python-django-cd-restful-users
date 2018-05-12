@@ -12,6 +12,35 @@
 <body>
     <div class="wrapper">
         <h1>Users</h1>
+        <table class="table">
+            <tr>
+                <th>id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td>Jimmy Jun</td>
+                <td>jj@cd.com</td>
+                <td>June 15th, 2018</td>
+                <td>
+                    <form action="/users/{{ id }}/show" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Show" class="btn btn-primary">
+                    </form>
+                    <form action="/users/{{ id }}/edit">
+                        {% csrf_token %}
+                        <input type="submit" value="Edit" class="btn btn-warning">
+                    </form>
+                    <form action="/users/{{ id }}/destroy">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>    
 </body>
 </html>

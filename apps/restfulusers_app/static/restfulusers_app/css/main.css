@@ -1,0 +1,39 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+
+.wrapper{
+    width: 970px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    color:silver;
+    font-style: italic;
+}
+form{
+    display: inline-block;
+}
+
+.edit{
+    display:block;
+    width: 400px;
+    margin-bottom:10px;
+    padding:10px 30px 10px 30px;
+    border:1px solid silver;
+}
+
+.text-right{
+    margin-top:10px;
+}
+/* .green{
+    color:#5cb85c;
+}
+
+.red{
+    color:#d9534f;
+} */

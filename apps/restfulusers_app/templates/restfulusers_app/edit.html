@@ -12,8 +12,27 @@
 <body>
     <div class="wrapper">
         <h1>Edit user page</h1>
-        <form action="">
+        <form action="" class="edit">
             {% csrf_token %}
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" class="form-control">
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" class="form-control">
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="form-control">
+            <div class="text-right">
+                <input type="submit" value="Update" class="btn btn-primary">
+            </div>
+        </form>
+        <form action="/users/{{ id }}">
+            {% csrf_token %}
+            <input type="submit" value="Show" class="btn btn-success">
+        </form>
+        <form action="/users">
+            {% csrf_token %}
+            <input type="submit" value="Go Back" class="btn btn-secondary">
         </form>
     </div>    
 </body>
