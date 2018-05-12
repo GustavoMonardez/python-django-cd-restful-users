@@ -20,27 +20,33 @@
                 <th>Created At</th>
                 <th>Actions</th>
             </tr>
+            {% for user in users%}
             <tr>
-                <th>1</th>
-                <td>Jimmy Jun</td>
-                <td>jj@cd.com</td>
-                <td>June 15th, 2018</td>
+                <th>{{user.id}}</th>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.created_at}}</td>
                 <td>
-                    <form action="/users/{{ id }}/show" method="post">
+                    <form action="/users/{{user.id}}">
                         {% csrf_token %}
-                        <input type="submit" value="Show" class="btn btn-primary">
+                        <input type="submit" value="Show" class="btn btn-secondary">
                     </form>
-                    <form action="/users/{{ id }}/edit">
+                    <form action="/users/{{user.id}}/edit">
                         {% csrf_token %}
                         <input type="submit" value="Edit" class="btn btn-warning">
                     </form>
-                    <form action="/users/{{ id }}/destroy">
+                    <form action="/users/{{user.id}}/destroy">
                         {% csrf_token %}
                         <input type="submit" value="Delete" class="btn btn-danger">
                     </form>
                 </td>
             </tr>
+            {% endfor %}
         </table>
+        <form action="/users/new">
+            {% csrf_token %}
+            <input type="submit" value="Add a new user" class="btn btn-primary">
+        </form>
     </div>    
 </body>
 </html>

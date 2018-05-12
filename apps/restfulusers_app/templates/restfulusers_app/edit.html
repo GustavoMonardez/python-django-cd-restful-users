@@ -12,21 +12,22 @@
 <body>
     <div class="wrapper">
         <h1>Edit user page</h1>
-        <form action="" class="edit">
+        <form action="/users/update" class="edit" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="id" value="{{ user.id }}">
             <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" class="form-control">
+            <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
 
             <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name" class="form-control">
+            <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
 
             <label for="email">Email:</label>
-            <input type="text" name="email" class="form-control">
+            <input type="text" name="email" class="form-control" value="{{ user.email }}">
             <div class="text-right">
                 <input type="submit" value="Update" class="btn btn-primary">
             </div>
         </form>
-        <form action="/users/{{ id }}">
+        <form action="/users/{{ user.id }}">
             {% csrf_token %}
             <input type="submit" value="Show" class="btn btn-success">
         </form>

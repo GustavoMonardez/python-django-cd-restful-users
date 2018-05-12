@@ -16,7 +16,11 @@ h1{
     font-style: italic;
 }
 form{
-    display: inline-block;
+    display: inline-block;vertical-align: top;
+}
+
+.table th, .table td{
+    line-height: 26px;
 }
 
 .edit{
