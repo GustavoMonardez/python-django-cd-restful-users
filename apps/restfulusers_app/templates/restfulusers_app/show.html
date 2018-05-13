@@ -12,6 +12,9 @@
 <body>
     <div class="wrapper">
         <h1>User {{ user.id }}</h1>
+        {% for message in messages %}
+        <p class="success">{{ message }}</p>
+        {% endfor %}
         <p>Full Name: <span>{{ user.first_name }} {{ user.last_name }}</span></p>
         <p>Email: <span>{{ user.email }}</span></p>
         <p>Created at: <span>{{ user.created_at }}</span></p>

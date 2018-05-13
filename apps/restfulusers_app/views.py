@@ -17,12 +17,17 @@ def create(request):
     last_name = request.POST["last_name"]
     email = request.POST["email"]
     # validate data
-
-    #insert data
-    user = User.objects.create(first_name=first_name,last_name=last_name,email=email)
-    # redirect to user profile page
-    page = "/users/" + str(user.id)   
-    return redirect(page)
+    errors = User.objects.validator(request.POST)
+    if len(errors):
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect("/users/new")
+    else:
+        #insert data
+        user = User.objects.create(first_name=first_name,last_name=last_name,email=email)
+        messages.success(request, "User successfully created!")
+        # redirect to user profile page
+        return redirect("/users/"+str(user.id))
 
 def edit(request,user):
     user = {"user":User.objects.get(id=user)}
@@ -59,8 +64,8 @@ def update(request):
         user.updated_at = updated_at
         user.save()
         messages.success(request, "User successfully updated!")
-    #redirect
-    return redirect("/users/"+id)
+        #redirect
+        return redirect("/users/"+id)
 
 def go_back(request):
     return redirect("/users")

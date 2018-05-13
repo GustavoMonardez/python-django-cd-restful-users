@@ -12,6 +12,9 @@
 <body>
     <div class="wrapper">
         <h1>Add a new user</h1>
+        {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
         <form action="/users/create" class="edit" method="POST">
             {% csrf_token %}
             <label for="first_name">First Name:</label>
