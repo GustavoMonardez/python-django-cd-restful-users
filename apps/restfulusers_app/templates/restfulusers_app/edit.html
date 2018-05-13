@@ -12,6 +12,9 @@
 <body>
     <div class="wrapper">
         <h1>Edit user page</h1>
+        {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
         <form action="/users/update" class="edit" method="POST">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ user.id }}">

@@ -34,6 +34,9 @@ form{
 .text-right{
     margin-top:10px;
 }
+.error{
+    color:#d9534f;
+}
 /* .green{
     color:#5cb85c;
 }

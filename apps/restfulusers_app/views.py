@@ -1,11 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 from .models import User
 from time import strftime
 import datetime
-from django.core import serializers
 
 def index(request):
-    #context = {"users": serializers.serialize('json', User.objects.all().values())}
     context = {"users": User.objects.all().values()}
     return render(request,"restfulusers_app/index.html", context)
 
@@ -46,21 +45,22 @@ def update(request):
     email = request.POST["email"]
     updated_at = datetime.datetime.now().strftime("%b %d %Y")
     # validate data
-
-    # update data
-    user = User.objects.get(id=id)
-    user.first_name = first_name
-    user.last_name = last_name
-    user.email = email
-    user.updated_at = updated_at
-    user.save()
-    # update sessions
-    
-    users = serializers.serialize('json', User.objects.all())
-    request.session["users"] = users
+    errors = User.objects.validator(request.POST)
+    if len(errors):
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect("/users/"+id+"/edit")
+    else:        
+        # update data
+        user = User.objects.get(id=id)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.updated_at = updated_at
+        user.save()
+        messages.success(request, "User successfully updated!")
     #redirect
-    page = "/users/" + str(id)
-    return redirect(page)
+    return redirect("/users/"+id)
 
 def go_back(request):
     return redirect("/users")
